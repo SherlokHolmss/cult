@@ -9,7 +9,7 @@ const firebaseConfig = {
     measurementId: "G-2W709LWCR9"
 };
 
-// Ініціалізація Firebase (використовуємо глобальні об'єкти)
+// Ініціалізація Firebase
 firebase.initializeApp(firebaseConfig);
 const db = firebase.firestore();
 
