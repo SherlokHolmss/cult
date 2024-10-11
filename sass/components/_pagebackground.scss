@@ -1,14 +1,10 @@
 body {
-    margin: 0;
-    padding: 0;
-    height: 100%;
     font-family: 'Diablo';
     font-size: 16px;
     font-weight: 700;
     line-height: 30px;
     letter-spacing: 0.06em;
     text-align: center;
-
 }
 .background {
     position: fixed;
@@ -22,5 +18,4 @@ body {
 .content {
     padding: 20px;
     color: white;
-    height: 150vh;
 }

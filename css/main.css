@@ -1,8 +1,5 @@
 @import url("https://cdnjs.cloudflare.com/ajax/libs/modern-normalize/2.0.0/modern-normalize.min.css");
 body {
-  margin: 0;
-  padding: 0;
-  height: 100%;
   font-family: "Diablo";
   font-size: 16px;
   font-weight: 700;
@@ -25,7 +22,6 @@ body {
 .content {
   padding: 20px;
   color: white;
-  height: 150vh;
 }
 
 ul {
@@ -62,6 +58,10 @@ address {
   font-family: Diablo;
   src: url(../../fonts/ofont.ru_Diablo.ttf);
 }
+@font-face {
+  font-family: Slayer;
+  src: url(../../fonts/Slayer.ttf);
+}
 .container {
   padding-left: 15px;
   padding-right: 15px;
@@ -72,7 +72,53 @@ address {
 .header {
   position: relative;
   z-index: 1;
-  height: 30px;
+  padding: 24px 0;
+  min-height: 80px;
+  width: 100%;
+  background-color: #8B0000;
+}
+.header-wrap {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+.header-nav {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  width: 100%;
+}
+.header-nav-logo {
+  font-family: Slayer;
+  font-size: 26px;
+  font-weight: 700;
+  line-height: 30.52px;
+  letter-spacing: 0.03em;
+  text-align: left;
+  margin-right: auto;
+}
+.header-nav-list {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: end;
+      -ms-flex-pack: end;
+          justify-content: flex-end;
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+.header-nav-list-item {
+  margin: 0 10px;
 }
 
 a {
@@ -88,7 +134,7 @@ a {
 }
 
 a:hover {
-  color: #8B0000;
+  color: #5A0000;
   -webkit-transform: scale(1.1);
           transform: scale(1.1);
 }/*# sourceMappingURL=main.css.map */
