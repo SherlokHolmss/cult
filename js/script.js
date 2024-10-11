@@ -9,23 +9,23 @@ const firebaseConfig = {
     measurementId: "G-2W709LWCR9"
 }
 
-// Ініціалізація Firebase
+// Initialize Firebase
 const app = firebase.initializeApp(firebaseConfig);
 const db = firebase.firestore();
 
-// Оновлення кількості квитків на сторінці
+// Форма для замовлення квитків
+const ticketForm = document.getElementById("ticketForm");
+
+// Оновлення кількості квитків на сторінці (для відображення доступних квитків)
 const ticketCountElement = document.getElementById("ticket-count");
-db.collection("tickets").doc("available").onSnapshot((doc) => {
+db.collection("tickets").doc("concert2024").onSnapshot((doc) => {
   if (doc.exists) {
-    const availableTickets = doc.data().count;
+    const availableTickets = doc.data().available;
     ticketCountElement.textContent = availableTickets;
   } else {
     ticketCountElement.textContent = "Немає даних!";
   }
 });
-
-// Форма для замовлення квитків
-const ticketForm = document.getElementById("ticketForm");
 
 // Відправка форми з перевіркою reCAPTCHA
 ticketForm.addEventListener("submit", (e) => {
@@ -73,11 +73,14 @@ function handleTicketOrder() {
         patronymic: patronymic,
         phone: phone,
         email: email,
+        concert: "Концерт гурту CULT",  // Назва концерту
+        date: "2024-10-15",            // Дата концерту
+        price: 100,                    // Ціна квитка
         timestamp: firebase.firestore.FieldValue.serverTimestamp()
       }).then(() => {
-        const ticketRef = db.collection("tickets").doc("available");
+        const ticketRef = db.collection("tickets").doc("concert2024");
         return ticketRef.update({
-          count: firebase.firestore.FieldValue.increment(-1)
+          available: firebase.firestore.FieldValue.increment(-1)
         });
       }).then(() => {
         alert('Квиток успішно замовлено!');
