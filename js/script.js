@@ -1,13 +1,13 @@
 // Firebase config
 const firebaseConfig = {
-  apiKey: "ВАШ_API_KEY",
-  authDomain: "ВАШ_AUTH_DOMAIN",
-  projectId: "ВАШ_PROJECT_ID",
-  storageBucket: "ВАШ_STORAGE_BUCKET",
-  messagingSenderId: "ВАШ_MESSAGING_ID",
-  appId: "ВАШ_APP_ID",
-  databaseURL: "ВАШ_DATABASE_URL"
-};
+    apiKey: "AIzaSyA3JNIYdxnuDV1tPo5iIAFp3zSYUx9vIqo",
+    authDomain: "cult-71154.firebaseapp.com",
+    projectId: "cult-71154",
+    storageBucket: "cult-71154.appspot.com",
+    messagingSenderId: "935641175512",
+    appId: "1:935641175512:web:2bbc1de3f8d56707e14ead",
+    measurementId: "G-2W709LWCR9"
+}
 
 // Ініціалізація Firebase
 const app = firebase.initializeApp(firebaseConfig);
