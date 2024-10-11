@@ -5,13 +5,12 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="./css/main.min.css">
-    <!-- Підключаємо Firebase через CDN (замість модульного імпорту) -->
+    <title>CULT</title>
     <script src="https://www.gstatic.com/firebasejs/9.6.1/firebase-app.js"></script>
     <script src="https://www.gstatic.com/firebasejs/9.6.1/firebase-firestore.js"></script>
     <script src="https://www.gstatic.com/firebasejs/9.6.1/firebase-auth.js"></script>
     <script src="https://www.google.com/recaptcha/api.js" async defer></script>
-    <script src="script.js" defer></script>
-
+    <script type="module" src="script.js"></script>
 </head>
 
 <body>
@@ -73,7 +72,6 @@
         <input type="email" id="email" required>
         <div class="g-recaptcha" data-sitekey="6LdnnF4qAAAAADgfadmANKcOF_WSuF0Bh5wdvI1F" data-action="LOGIN"></div>
         <button type="submit">Замовити квиток</button>
-    </form>
     </form>
     <div class="background"></div>
 </body>
