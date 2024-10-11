@@ -1,0 +1,24 @@
+.section-hero {
+    margin-top: 100px;
+    margin-bottom: 100px;
+    
+    &-wrap {
+        &-title {
+            font-family: 'Diablo';
+            font-size: 16px;
+            font-weight: 700;
+            line-height: 30px;
+            letter-spacing: 0.06em;
+            text-align: center;
+        }
+
+        &-description {
+            font-family: 'Diablo';
+            font-size: 16px;
+            font-weight: 700;
+            line-height: 30px;
+            letter-spacing: 0.06em;
+            text-align: center;
+        }
+    }
+}
