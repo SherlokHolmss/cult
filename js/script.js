@@ -1,10 +1,9 @@
 // script.js
 
-// Firebase config
 import { initializeApp } from "https://www.gstatic.com/firebasejs/9.6.1/firebase-app.js";
 import { getFirestore, collection, addDoc, onSnapshot, doc, updateDoc, increment, serverTimestamp } from "https://www.gstatic.com/firebasejs/9.6.1/firebase-firestore.js";
 
-// Your web app's Firebase configuration
+// Firebase config
 const firebaseConfig = {
     apiKey: "AIzaSyA3JNIYdxnuDV1tPo5iIAFp3zSYUx9vIqo",
     authDomain: "cult-71154.firebaseapp.com",
