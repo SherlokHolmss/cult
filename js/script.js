@@ -1,4 +1,4 @@
-// Firebase config
+// Firebase config (цей код залишається без змін)
 const firebaseConfig = {
     apiKey: "AIzaSyA3JNIYdxnuDV1tPo5iIAFp3zSYUx9vIqo",
     authDomain: "cult-71154.firebaseapp.com",
@@ -7,25 +7,25 @@ const firebaseConfig = {
     messagingSenderId: "935641175512",
     appId: "1:935641175512:web:2bbc1de3f8d56707e14ead",
     measurementId: "G-2W709LWCR9"
-}
+};
 
-// Initialize Firebase
-const app = firebase.initializeApp(firebaseConfig);
+// Ініціалізація Firebase (використовуємо глобальні об'єкти)
+firebase.initializeApp(firebaseConfig);
 const db = firebase.firestore();
 
-// Форма для замовлення квитків
-const ticketForm = document.getElementById("ticketForm");
-
-// Оновлення кількості квитків на сторінці (для відображення доступних квитків)
+// Оновлення кількості квитків на сторінці
 const ticketCountElement = document.getElementById("ticket-count");
-db.collection("tickets").doc("concert2024").onSnapshot((doc) => {
+db.collection("tickets").doc("available").onSnapshot((doc) => {
   if (doc.exists) {
-    const availableTickets = doc.data().available;
+    const availableTickets = doc.data().count;
     ticketCountElement.textContent = availableTickets;
   } else {
     ticketCountElement.textContent = "Немає даних!";
   }
 });
+
+// Форма для замовлення квитків
+const ticketForm = document.getElementById("ticketForm");
 
 // Відправка форми з перевіркою reCAPTCHA
 ticketForm.addEventListener("submit", (e) => {
@@ -73,14 +73,11 @@ function handleTicketOrder() {
         patronymic: patronymic,
         phone: phone,
         email: email,
-        concert: "Концерт гурту CULT",  // Назва концерту
-        date: "2024-10-15",            // Дата концерту
-        price: 100,                    // Ціна квитка
         timestamp: firebase.firestore.FieldValue.serverTimestamp()
       }).then(() => {
-        const ticketRef = db.collection("tickets").doc("concert2024");
+        const ticketRef = db.collection("tickets").doc("available");
         return ticketRef.update({
-          available: firebase.firestore.FieldValue.increment(-1)
+          count: firebase.firestore.FieldValue.increment(-1)
         });
       }).then(() => {
         alert('Квиток успішно замовлено!');
