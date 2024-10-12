@@ -1,7 +1,7 @@
 // script.js
 
 import { initializeApp } from "https://www.gstatic.com/firebasejs/9.6.1/firebase-app.js";
-import { getFirestore, collection, addDoc, onSnapshot, doc, updateDoc, increment, serverTimestamp } from "https://www.gstatic.com/firebasejs/9.6.1/firebase-firestore.js";
+import { getFirestore, collection, addDoc, onSnapshot, doc, updateDoc, increment, serverTimestamp, runTransaction } from "https://www.gstatic.com/firebasejs/9.6.1/firebase-firestore.js";
 
 // Firebase config
 const firebaseConfig = {
@@ -40,7 +40,7 @@ ticketForm.addEventListener("submit", (e) => {
     // Отримуємо відповідь від reCAPTCHA
     const recaptchaResponse = grecaptcha.getResponse();
     if (!recaptchaResponse) {
-        alert("Підтвердьте, що ви не робот!");
+        alert("Підпишіть контракт з дьяволом");
         return;  // Зупиняємо подальше виконання, якщо reCAPTCHA не пройдена
     }
 
@@ -48,7 +48,7 @@ ticketForm.addEventListener("submit", (e) => {
     handleTicketOrder();
 });
 
-// Функція для обробки замовлення квитків
+// Функція для обробки замовлення квитків з транзакцією
 async function handleTicketOrder() {
     const name = document.getElementById("name").value;
     const surname = document.getElementById("surname").value;
@@ -57,19 +57,30 @@ async function handleTicketOrder() {
     const email = document.getElementById("email").value;
 
     try {
-        // Додаємо нове замовлення
-        await addDoc(collection(db, "orders"), {
-            name,
-            surname,
-            patronymic,
-            phone,
-            email,
-            timestamp: serverTimestamp()
-        });
+        // Виконуємо транзакцію для оновлення кількості квитків
+        await runTransaction(db, async (transaction) => {
+            const ticketDoc = await transaction.get(ticketRef);
+            if (!ticketDoc.exists()) {
+                throw "Документ не існує!";
+            }
 
-        // Оновлюємо кількість квитків
-        await updateDoc(ticketRef, {
-            available: increment(-1)
+            const availableTickets = ticketDoc.data().available;
+            if (availableTickets > 0) {
+                // Оновлюємо кількість квитків
+                transaction.update(ticketRef, { available: availableTickets - 1 });
+
+                // Додаємо нове замовлення
+                await addDoc(collection(db, "orders"), {
+                    name,
+                    surname,
+                    patronymic,
+                    phone,
+                    email,
+                    timestamp: serverTimestamp()
+                });
+            } else {
+                throw "Немає доступних квитків!";
+            }
         });
 
         alert('Квиток успішно замовлено!');
