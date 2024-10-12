@@ -1,6 +1,6 @@
 @import url("https://cdnjs.cloudflare.com/ajax/libs/modern-normalize/2.0.0/modern-normalize.min.css");
 body {
-  font-family: "Diablo";
+  font-family: Diablo;
   font-size: 16px;
   font-weight: 700;
   line-height: 30px;
@@ -54,13 +54,30 @@ address {
   font-style: normal;
 }
 
+input {
+  outline: none;
+  border: none;
+  -webkit-box-shadow: none;
+          box-shadow: none;
+  background-color: transparent;
+  color: inherit;
+  cursor: default;
+}
+
+input:focus, input:hover, input:not(:active:focus) {
+  outline: none;
+  border: none;
+  -webkit-box-shadow: 0.5px 0.5px 0.5px 0.5px;
+          box-shadow: 0.5px 0.5px 0.5px 0.5px;
+}
+
 @font-face {
   font-family: Diablo;
-  src: url(../../fonts/ofont.ru_Diablo.ttf);
+  src: url(../fonts/ofont.ru_Diablo.woff);
 }
 @font-face {
   font-family: Slayer;
-  src: url(../../fonts/Slayer.ttf);
+  src: url(../fonts/Slayer.woff);
 }
 .container {
   padding-left: 15px;
@@ -144,7 +161,7 @@ a:hover {
   margin-bottom: 100px;
 }
 .section-hero-wrap-title {
-  font-family: "Diablo";
+  font-family: Diablo;
   font-size: 16px;
   font-weight: 700;
   line-height: 30px;
@@ -152,7 +169,7 @@ a:hover {
   text-align: center;
 }
 .section-hero-wrap-description {
-  font-family: "Diablo";
+  font-family: Diablo;
   font-size: 16px;
   font-weight: 700;
   line-height: 30px;
@@ -192,4 +209,111 @@ a:hover {
 
 .contacts-item-link:hover, .nav-link:hover {
   color: #8B0000;
+}
+
+.modal {
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  z-index: 2;
+}
+
+.modal-content {
+  background-color: #8B0000;
+  padding: 20px;
+  border-radius: 5px;
+  position: relative;
+  width: 90%;
+  max-width: 600px;
+  text-align: left;
+  -webkit-box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.3);
+          box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.3);
+}
+
+form {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+}
+
+.g-recaptcha {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  margin-top: 10px;
+}
+
+form label {
+  margin-bottom: 5px;
+  font-size: 18px;
+}
+
+form input {
+  margin-bottom: 15px;
+  padding: 8px;
+  font-size: 16px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+
+button[type=submit] {
+  background-color: #2C2C2C;
+  color: white;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  margin-top: 20px;
+}
+
+button[type=submit]:hover {
+  background-color: #5A0000;
+}
+
+#ticket-count {
+  text-align: center;
+  margin-top: 10px;
+  font-size: 18px;
+  color: red;
+}
+
+.modal-open-btn {
+  background-color: #5A0000;
+}
+
+.modal-close-btn {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  background: none;
+  border: none;
+  font-size: 24px;
+  cursor: pointer;
+}
+
+.modal.is-active {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+}
+
+span {
+  font-size: 30px;
 }/*# sourceMappingURL=main.css.map */
