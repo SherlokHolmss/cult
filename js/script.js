@@ -86,7 +86,7 @@ async function handleTicketOrder() {
         alert('Квиток успішно замовлено!');
         ticketForm.reset();
     } catch (error) {
-        console.error("Помилка при замовленні:", error);
+        console.error("Квиток успішно замовлено!:", error);//Помилка при замовленні
         alert('Виникла помилка, спробуйте ще раз.');
     }
 }
